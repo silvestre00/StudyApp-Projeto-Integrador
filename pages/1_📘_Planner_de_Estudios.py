@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, update
 from utils.storage import session, disciplines
 from utils.helpers import hours_to_minutes, minutes_to_hours
 
@@ -13,8 +13,18 @@ def load_data():
     return df
 
 def save_discipline(name, minutes):
-    stmt = insert(disciplines).values(name=name, minutes=minutes)
-    session.execute(stmt)
+    query = select(disciplines).where(disciplines.c.name == name)
+    existing = session.execute(query).fetchone()
+
+    if existing:
+        current_minutes = existing.minutes
+        stmt = (
+            update(disciplines).where(disciplines.c.id == existing.id).values(minutes=current_minutes + minutes)
+        )
+        session.execute(stmt)
+    else:
+        stmt = insert(disciplines).values(name=name, minutes=minutes)
+        session.execute(stmt)
     session.commit()
 
 st.title("📘 Planner de Estudos")
@@ -29,12 +39,14 @@ with st.form("form_disciplines"):
     submit = st.form_submit_button("Adicionar")
 
     if submit:
-        if discipline_name and (hours > 0 or minutes > 0):
+        if not discipline_name:
+            st.warming("⚠️ Você precisa informar o nome da disciplina.")
+        elif hours == 0 and minutes == 0:
+            st.warning("⚠️ Defina pelo menos alguns minutos para a disciplina.")
+        else:
             total_minutes = hours_to_minutes(int(hours), int(minutes))
             save_discipline(discipline_name, total_minutes)
             st.success(f"✅ {discipline_name} adicionada com {hours}:{minutes:02d}h semanais!")
-        else:
-            st.error("⚠️ Preencha os campos corretamente.")
 
 df = load_data()
 
