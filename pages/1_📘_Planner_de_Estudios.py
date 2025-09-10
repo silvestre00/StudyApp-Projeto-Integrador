@@ -15,7 +15,7 @@ def load_data():
 def save_discipline(name, minutes):
     stmt = insert(disciplines).values(name=name, minutes=minutes)
     session.execute(stmt)
-    session.commit
+    session.commit()
 
 st.title("📘 Planner de Estudos")
 
