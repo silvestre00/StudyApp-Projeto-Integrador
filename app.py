@@ -1,9 +1,19 @@
 import streamlit as st
 
-from modules import planner
-
-st.sidebar.title("📚 Aplicativo de Estudos")
-menu = st.sidebar.radio("Escolha um módulo:", ["Planner de Estudos", ])
-
-if menu == "Planner de Estudos":
-    planner.run()
+st.set_page_config(
+    page_title="StudyApp",
+    page_icon="📚",
+    layout="wide"
+)
+st.title("📚 Aplicativo de Estudos")
+st.markdown("""
+    Bem-vindo ao **StudyApp**!  
+    Use o menu lateral para navegar entre os módulos:
+    - 📘 Planner de Estudos  
+    - 📝 Quiz / Simulados  
+    - 🃏 Flashcards  
+    - 📑 Resumo Inteligente  
+    - 📅 Gestor de Provas e Trabalhos  
+    - 📊 Estatísticas de Estudo  
+    - ⏱️ Modo Foco (Pomodoro) 
+""")
