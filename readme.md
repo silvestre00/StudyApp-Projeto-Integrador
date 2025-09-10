@@ -50,7 +50,7 @@ StudyApp/
 
 1. **Clone este repositório**
    ```bash
-   git clone https://github.com/seu-usuario/studyapp.git
+   git clone https://github.com/silvestre00/StudyApp-Projeto-Integrador
    cd studyapp
    ```
 
