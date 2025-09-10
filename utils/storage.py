@@ -1,5 +1,8 @@
 from sqlalchemy import create_engine, Column, Integer, String, Table, MetaData
 from sqlalchemy.orm import sessionmaker
+import os
+
+os.makedirs("data", exist_ok=True)
 
 DATABASE_URL = "sqlite:///data/estudos.db"
 
