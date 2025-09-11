@@ -11,8 +11,10 @@ A aplicação é modular e conta com diferentes funcionalidades para auxiliar es
 - **Planner de Estudos Interativo**
   - Cadastro de disciplinas
   - Definição de horas e minutos semanais para cada disciplina
+  - Acúmulo de horas caso a disciplina já exista
   - Armazenamento em banco SQLite
   - Visualização de cronogramas em tabelas e gráficos (pizza e barras)
+  - Seleção de disciplinas já cadastradas via *selectbox*
 
 *(Outros módulos como Quiz, Flashcards e Resumos ainda serão adicionados futuramente.)*
 
@@ -32,16 +34,17 @@ A aplicação é modular e conta com diferentes funcionalidades para auxiliar es
 
 ```
 StudyApp/
-│── app.py                  # Arquivo principal do Streamlit
-│── modules/
-│   └── planner.py          # Módulo de Planner de Estudos
+│── app.py                                # Arquivo inicial do Streamlit (multipages)
+│── pages/                                # Páginas do app
+│   ├── 1_📘_Planner_de_Estudos.py       # Página do Planner de Estudos
+│   └── 2_📝_Quiz_Simulados.py           # Página do Quiz (em desenvolvimento)
 │── utils/
-│   ├── storage.py          # Conexão com o banco SQLite
-│   └── helpers.py          # Funções auxiliares (conversão de horas/minutos)
+│   ├── storage.py                        # Conexão e definição do banco SQLite
+│   └── helpers.py                        # Funções auxiliares (conversão de horas/minutos)
 │── data/
-│   └── estudos.db          # Banco de dados SQLite (ignorado pelo Git)
-│── .gitignore              # Arquivos e pastas ignorados pelo Git
-└── requirements.txt        # Dependências do projeto
+│   └── estudos.db                        # Banco de dados SQLite (ignorado pelo Git)
+│── .gitignore                            # Arquivos e pastas ignorados pelo Git
+└── requirements.txt                      # Dependências do projeto
 ```
 
 ---
@@ -50,8 +53,8 @@ StudyApp/
 
 1. **Clone este repositório**
    ```bash
-   git clone https://github.com/silvestre00/StudyApp-Projeto-Integrador
-   cd studyapp
+   git clone https://github.com/silvestre00/StudyApp-Projeto-Integrador.git
+   cd StudyApp-Projeto-Integrador
    ```
 
 2. **Crie um ambiente virtual e ative-o**
@@ -81,7 +84,7 @@ StudyApp/
 
 ## 🎯 Próximos Passos
 
-- Implementar módulo de **Quiz/Simulados**
+- Finalizar módulo de **Quiz/Simulados**
 - Criar **Flashcards Digitais**
 - Adicionar **Resumo Inteligente** com integração de IA
 - Expandir **Gestor de Provas e Trabalhos**
