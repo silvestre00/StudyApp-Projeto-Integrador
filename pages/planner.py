@@ -77,4 +77,5 @@ def run():
         st.plotly_chart(fig_barras)
 
 
-run()
+if __name__ == "__main__":
+    run()

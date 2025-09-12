@@ -1,19 +1,47 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="StudyApp",
-    page_icon="📚",
-    layout="wide"
-)
-st.title("📚 Aplicativo de Estudos")
-st.markdown("""
-    Bem-vindo ao **StudyApp**!  
-    Use o menu lateral para navegar entre os módulos:
-    - 📘 Planner de Estudos  
-    - 📝 Quiz / Simulados  
-    - 🃏 Flashcards  
-    - 📑 Resumo Inteligente  
-    - 📅 Gestor de Provas e Trabalhos  
-    - 📊 Estatísticas de Estudo  
-    - ⏱️ Modo Foco (Pomodoro) 
-""")
+def main():
+    planner_page = st.Page(
+        "pages/planner.py", url_path="/planner", title="PLanner de Estudos", icon="📘"
+    )
+    quiz_page = st.Page(
+        "pages/quiz.py", url_path="/quiz", title="Quiz / Simulados", icon="📝"
+    )
+    flashcards_page = st.Page(
+        "pages/summaries.py", url_path="/flashcards", title="Flashcards", icon="🃏"
+    )
+    summaries_page = st.Page(
+        "pages/summaries.py", url_path="/summaries", title="Resumo Inteligente", icon="🧾"
+    )
+    tasks_page = st.Page(
+        "pages/task.py", url_path="/tasks", title="Provas & Trabalhos", icon="📅"
+    )
+    stats_page = st.Page(
+        "pages/stats.py", url_path= "/stats", title="Estatísticas", icon="📊"
+    )
+    pomodoro_page = st.Page(
+        "pages/pomodor.py", url_path="/pomodoro", title="Modo Foco", icon="⏱️"
+    )
+
+    pg = st.navigation(
+        [
+            planner_page,
+            quiz_page,
+            flashcards_page,
+            summaries_page,
+            tasks_page,
+            stats_page,
+            pomodoro_page,
+        ]
+    )
+    
+    st.set_page_config(
+        page_title="📚 StudyApp - Projeto Integrador",
+        page_icon="📚",
+        layout="wide",
+    )
+
+    pg.run()
+
+if __name__ == "__main__":
+    main()
