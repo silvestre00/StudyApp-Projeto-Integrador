@@ -1,10 +1,10 @@
 from sqlalchemy import (
-    create_engine, Colum, Integer, String, Table, Metada, Boolean, ForeignKey, DateTime, select
+    create_engine, Column, Integer, String, Table, MetaData, Boolean, ForeignKey, DateTime, select, text
 )
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import os
-from utils.seed_data import seed_questions
+
 
 
 # Garantir que a pasta do banco existe
@@ -21,10 +21,9 @@ metadata = MetaData()
 # Disciplinas
 disciplines = Table(
     "disciplines", metadata,
-   "disciplines", metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("name", String, nullable=False, unique=True),
-    Column("minutes", Integer, nullable=False, default=0)
+    Column("minutes", Integer, nullable=False, server_default=text("0"))
 )
 # Perguntas do quiz
 questions = Table(
@@ -63,5 +62,8 @@ session = Session()
 
 # Popular o banco com exemplo
 # Verifica se já existem perguntas
-if session.execute(select(questions)).first() is None:
-    seed_questions()
+def run_seed_if_needed():
+    from utils.seed_data import seed_questions
+    if session.execute(select(questions)).first() is None:
+        seed_questions()
+run_seed_if_needed()
