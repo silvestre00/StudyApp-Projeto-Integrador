@@ -56,7 +56,7 @@ def run():
         # Salvar resultado no banco
         stmt = insert(quiz_results).values(
             score=score,
-            total=total
+            total_questions = total
         )
         session.execute(stmt)
         session.commit()
@@ -70,7 +70,7 @@ def run():
 
         results = session.execute(select(quiz_results)).fetchall()
         if results:
-            df = pd.DataFrame(results, columns=["id", "score", "total", "created_at"])
+            df = pd.DataFrame(results, columns=["id", "discipline_id", "score", "total", "created_at"])
             st.subheader("📊 Histórico de Tentativas")
             st.dataframe(df[["score", "total", "created_at"]])
 
