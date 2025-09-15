@@ -105,6 +105,8 @@ def run():
                     # Juntar disciplinas
                     disc = session.execute(select(disciplines)).fetchall()
                     disc_df = pd.DataFrame(disc, columns=["id", "name", "minutes"])
+                    stats_df["discipline_id"] = stats_df["discipline_id"].fillna(0).astype(int)
+                    disc_df["id"] = disc_df["id"].astype(int)
                     merged = stats_df.merge(disc_df, left_on="discipline_id", right_on="id")
 
                     fig_bar = px.bar(
