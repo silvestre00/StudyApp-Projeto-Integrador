@@ -53,6 +53,15 @@ quiz_results = Table(
     Column("created_at", DateTime, default=datetime.utcnow)
 )
 
+# Flashcards
+flashcards = Table(
+    "flashcards", metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("front", String, nullable=False),
+    Column("back", String, nullable=False),
+    Column("created_at", DateTime, default=datetime.utcnow)
+)
+
 # Cria todas as tabelas (Caso não existam)
 metadata.create_all(engine)
 

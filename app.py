@@ -8,7 +8,7 @@ def main():
         "pages/quiz.py", url_path="/quiz", title="Quiz / Simulados", icon="📝"
     )
     flashcards_page = st.Page(
-        "pages/flashcards.py", url_path="/flashcards", title="Flashcards", icon="🃏"
+    "pages/flashcards.py", url_path="/flashcards", title="Flashcards", icon="🃏"
     )
     summaries_page = st.Page(
         "pages/summaries.py", url_path="/summaries", title="Resumo Inteligente", icon="🧾"
