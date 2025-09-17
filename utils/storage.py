@@ -62,6 +62,16 @@ flashcards = Table(
     Column("created_at", DateTime, default=datetime.utcnow)
 )
 
+#Focus
+focus_sessions = Table(
+    "focus_sessions", metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("discipline_id", Integer, ForeignKey("disciplines.id"), nullable=True),
+    Column("duration_minutes", Integer, nullable=False),
+    Column("started_at", DateTime, default=datetime.utcnow),
+    Column("finished_at", DateTime, nullable=True),
+    Column("status", String, default="completed"),
+)
 # Cria todas as tabelas (Caso não existam)
 metadata.create_all(engine)
 
