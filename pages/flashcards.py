@@ -41,3 +41,7 @@ def run():
         for _, row in df.iterrows():
             with st.expander(f"🔹 {row['front']}"):
                 st.write(row["back"])
+
+
+if __name__ == "__main__":
+    run()

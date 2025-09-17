@@ -28,7 +28,6 @@ def main():
             planner_page,
             quiz_page,
             flashcards_page,
-            summaries_page,
             tasks_page,
             stats_page,
             pomodoro_page,
