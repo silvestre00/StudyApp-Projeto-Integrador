@@ -63,14 +63,20 @@ flashcards = Table(
 )
 
 #Focus
-focus_sessions = Table(
-    "focus_sessions", metadata,
+pomodoro_sessions = Table(
+    "pomodoro_sessions", metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("discipline_id", Integer, ForeignKey("disciplines.id"), nullable=True),
-    Column("duration_minutes", Integer, nullable=False),
-    Column("started_at", DateTime, default=datetime.utcnow),
-    Column("finished_at", DateTime, nullable=True),
-    Column("status", String, default="completed"),
+    Column(
+        "discipline_id",
+        Integer,
+        ForeignKey("disciplines.id", ondelete="SET NULL"),
+        nullable=True
+    ),
+    Column("focus_minutes", Integer, nullable=False),
+    Column("break_minutes", Integer, nullable=False),
+    Column("start_time", DateTime, default=datetime.utcnow),
+    Column("end_time", DateTime, nullable=True),
+    Column("status", String, default="completed"),  # completed | interrupted
 )
 # Cria todas as tabelas (Caso não existam)
 metadata.create_all(engine)
