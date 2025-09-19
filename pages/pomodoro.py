@@ -1,6 +1,7 @@
 import streamlit as st
+import pandas as pd
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import insert, select
 from utils.storage import session, disciplines, pomodoro_sessions
 
@@ -18,7 +19,8 @@ def save_pomodoro_session(discipline_id, focus_minutes, break_minutes, start_tim
         focus_minutes=focus_minutes,
         break_minutes=break_minutes,
         start_time=start_time,
-        end_time=end_time
+        end_time=end_time,
+        status="completed"
     )
     session.execute(stmt)
     session.commit()
@@ -52,17 +54,18 @@ def run():
         st.session_state["focus_time"] = focus_time
         st.session_state["break_time"] = break_time
         st.session_state["discipline_id"] = discipline_id
-        st.session_state["start_time"] = datetime.utcnow()
+        st.session_state["start_time"] = datetime.now(timezone.utc)
 
     if "running" in st.session_state and st.session_state["running"]:
         st.subheader(f"📘 Disciplina: {selected_discipline}")
 
         total_seconds = st.session_state["focus_time"] * 60
-        with st.empty():
-            for remaining in range(total_seconds, 0, -1):
-                mins, secs = divmod(remaining, 60)
-                st.metric("⏳ Tempo restante (foco)", f"{mins:02}:{secs:02}")
-                time.sleep(1)
+        placeholder = st.empty()
+        for remaining in range(total_seconds, 0, -1):
+            mins, secs = divmod(remaining, 60)
+            placeholder.metric("⏳ Tempo restante (foco)", f"{mins:02}:{secs:02}")
+            time.sleep(1)
+            st.rerun()
 
         st.success("✅ Tempo de foco concluído! Agora, faça uma pausa.")
 
@@ -72,10 +75,43 @@ def run():
             st.session_state["focus_time"],
             st.session_state["break_time"],
             st.session_state["start_time"],
-            datetime.utcnow()
+            datetime.now(timezone.utc)
         )
 
         st.session_state["running"] = False
+
+    # Relatórios do Pomodoro
+    st.subheader("📊 Relatórios do Pomodoro")
+
+    def load_sessions():
+        query = select(
+            pomodoro_sessions.c.id,
+            pomodoro_sessions.c.discipline_id,
+            pomodoro_sessions.c.focus_minutes,
+            pomodoro_sessions.c.break_minutes,
+            pomodoro_sessions.c.start_time,
+            pomodoro_sessions.c.end_time,
+            pomodoro_sessions.c.status
+        )
+        result = session.execute(query).fetchall()
+        df = pd.DataFrame(
+            result,
+            columns=[
+                "id", "discipline_id", "focus_minutes",
+                "break_minutes", "start_time", "end_time", "status"
+            ]
+        )
+        return df
+
+    # Carregar sessões do banco
+    df_sessions = load_sessions()
+
+    if df_sessions.empty:
+        st.info("Nenhuma sessão registrada ainda.")
+    else:
+        st.write("📋 Histórico de Sessões")
+        st.dataframe(df_sessions)
+
 
 if __name__ == "__main__":
     run()
