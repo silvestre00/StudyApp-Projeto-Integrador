@@ -2,100 +2,112 @@
 
 Este projeto faz parte de um trabalho acadêmico e tem como objetivo o desenvolvimento de um **aplicativo web para organização de estudos**, utilizando **Python, Streamlit e SQLite**.
 
-A aplicação é modular e conta com diferentes funcionalidades para auxiliar estudantes no planejamento e acompanhamento das suas rotinas de estudo.
+A aplicação segue o modelo **multi-page**, permitindo acesso a diferentes funcionalidades de forma organizada.
 
----
+## 🌐 Acesso Online
+
+A aplicação está disponível na nuvem do Streamlit e pode ser acessada diretamente pelo navegador:
+
+**🔗 [Acessar Aplicação Online](https://studyapp-projeto-integrador.streamlit.app/Planner_de_Estudios)**
 
 ## 🚀 Funcionalidades Implementadas
 
-- **Planner de Estudos Interativo**
-  - Cadastro de disciplinas
-  - Definição de horas e minutos semanais para cada disciplina
-  - Acúmulo de horas caso a disciplina já exista
-  - Armazenamento em banco SQLite
-  - Visualização de cronogramas em tabelas e gráficos (pizza e barras)
-  - Seleção de disciplinas já cadastradas via *selectbox*
+### 📘 Planner de Estudos
+- Cadastro e atualização de disciplinas.
+- Definição de horas e minutos semanais para cada disciplina.
+- Visualização em tabelas e gráficos interativos (pizza e barras).
+- Dados armazenados no banco SQLite.
 
-*(Outros módulos como Quiz, Flashcards e Resumos ainda serão adicionados futuramente.)*
+### 📝 Quiz/Simulados
+- Perguntas de múltipla escolha já cadastradas (exemplo com 10 perguntas de tecnologia).
+- Correção automática após finalização do quiz.
+- Histórico de tentativas armazenado no banco (pontuação, data, total de questões).
+- Gráficos de evolução (linha) e desempenho por disciplina (barras).
+- 🔮 **Futuro**: integração com **IA via API**, permitindo que o usuário informe um tema e o sistema gere automaticamente perguntas.
 
----
+### 🃏 Flashcards
+- Estrutura inicial para criação e revisão de flashcards digitais.
+- Possibilidade de expansão para algoritmos de repetição espaçada.
+
+### ⏱️ Modo Foco (Pomodoro)
+- Timer configurável de foco e pausa.
+- Registro das sessões no banco de dados (disciplina, duração, horário de início e fim, status).
+- Histórico de sessões exibido em tabela para análise futura.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- [Python 3](https://www.python.org/)
-- [Streamlit](https://streamlit.io/)
-- [SQLite (via SQLAlchemy)](https://www.sqlalchemy.org/)
-- [Pandas](https://pandas.pydata.org/)
-- [Plotly Express](https://plotly.com/python/plotly-express/)
-
----
+- Python 3
+- Streamlit
+- SQLite (via SQLAlchemy)
+- Pandas
+- Plotly Express
 
 ## 📂 Estrutura do Projeto
 
 ```
 StudyApp/
-│── app.py                                # Arquivo inicial do Streamlit (multipages)
-│── pages/                                # Páginas do app
-│   ├── 1_📘_Planner_de_Estudos.py       # Página do Planner de Estudos
-│   └── 2_📝_Quiz_Simulados.py           # Página do Quiz (em desenvolvimento)
+│── app.py                     # Arquivo principal com navegação multi-page
+│── pages/
+│   ├── planner.py              # Planner de Estudos
+│   ├── quiz.py                 # Quiz e Simulados
+│   ├── flashcards.py           # Flashcards
+│   └── pomodoro.py             # Modo Foco (Pomodoro)
 │── utils/
-│   ├── storage.py                        # Conexão e definição do banco SQLite
-│   └── helpers.py                        # Funções auxiliares (conversão de horas/minutos)
+│   ├── storage.py              # Definição das tabelas e conexão SQLite
+│   ├── seed_data.py            # Função para popular perguntas de exemplo
+│   └── helpers.py              # Funções auxiliares (ex: conversão de horas/minutos)
 │── data/
-│   └── estudos.db                        # Banco de dados SQLite (ignorado pelo Git)
-│── .gitignore                            # Arquivos e pastas ignorados pelo Git
-└── requirements.txt                      # Dependências do projeto
+│   └── estudos.db              # Banco SQLite (ignorado pelo Git)
+│── .gitignore
+└── requirements.txt            # Dependências do projeto
 ```
-
----
 
 ## ⚙️ Como Executar o Projeto
 
-1. **Clone este repositório**
-   ```bash
-   git clone https://github.com/silvestre00/StudyApp-Projeto-Integrador.git
-   cd StudyApp-Projeto-Integrador
-   ```
+### 1. Clone este repositório
 
-2. **Crie um ambiente virtual e ative-o**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # Linux/Mac
-   venv\Scripts\activate      # Windows
-   ```
+```bash
+git clone https://github.com/silvestre00/StudyApp-Projeto-Integrador
+cd StudyApp-Projeto-Integrador
+```
 
-3. **Instale as dependências**
-   ```bash
-   pip install -r requirements.txt
-   ```
-   *(se ainda não existir requirements.txt, você pode gerar com `pip freeze > requirements.txt`)*
+### 2. Crie um ambiente virtual e ative-o
 
-4. **Execute a aplicação**
-   ```bash
-   streamlit run app.py
-   ```
+```bash
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+```
 
-5. **Acesse no navegador**
-   ```
-   http://localhost:8501
-   ```
+### 3. Instale as dependências
 
----
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Execute a aplicação
+
+```bash
+streamlit run app.py
+```
+
+### 5. Acesse no navegador
+
+```
+http://localhost:8501
+```
 
 ## 🎯 Próximos Passos
 
-- Finalizar módulo de **Quiz/Simulados**
-- Criar **Flashcards Digitais**
-- Adicionar **Resumo Inteligente** com integração de IA
-- Expandir **Gestor de Provas e Trabalhos**
-- Criar **Dashboard de Estatísticas de Estudo**
-- Implementar **Modo Foco (Pomodoro)**
-
----
+- Expandir **base de perguntas** e permitir **integração com IA** para geração dinâmica.
+- Melhorar sistema de **flashcards com repetição espaçada**.
+- Criar **dashboard unificado** com relatórios de desempenho.
+- Incluir **análises de tempo de estudo** integrando Planner + Pomodoro.
+- Suporte para exportar relatórios em PDF/Excel.
 
 ## 👥 Equipe do Projeto
 
-Projeto desenvolvido pelos seguintes integrantes como parte do Projeto Integrador Senac Grupo 39:
+Projeto desenvolvido como parte do Projeto Integrador Senac (Grupo 39):
 
 - **Silvestre Alves**
 - **Valter Paulino**
@@ -103,9 +115,6 @@ Projeto desenvolvido pelos seguintes integrantes como parte do Projeto Integrado
 - **Vitor Alves**
 - **Tiago Sampaio**
 
----
-
 ## 📄 Licença
 
-Este projeto é de uso acadêmico.
-Sinta-se livre para clonar e melhorar.
+Este projeto é de uso acadêmico. Sinta-se livre para clonar e melhorar.
