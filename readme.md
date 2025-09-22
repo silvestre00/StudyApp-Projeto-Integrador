@@ -117,7 +117,7 @@ Abaixo estão algumas telas iniciais do protótipo do sistema.
 ![Protótipo 3](assents/images/3-Relatorios.png)
 ![Protótipo 4](assents/images/4-Quiz.png)
 ![Protótipo 5](assents/images/5-Flashcards.png)
-![Protótipo 6](assents/images/6-ModoFoco.png)
+![Protótipo 6](assents/images/6-Modo Foco.png)
 
 
 ## 👥 Equipe do Projeto
