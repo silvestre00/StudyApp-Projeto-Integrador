@@ -105,6 +105,21 @@ http://localhost:8501
 - Incluir **análises de tempo de estudo** integrando Planner + Pomodoro.
 - Suporte para exportar relatórios em PDF/Excel.
 
+
+
+## 🎨 Protótipo
+
+Abaixo estão algumas telas iniciais do protótipo do sistema.  
+*(As imagens estão armazenadas na pasta `assets/images/` do repositório.)*
+
+![Protótipo 1](assets/images/1-Login.png)
+![Protótipo 2](assets/images/2-Planner.png)
+![Protótipo 3](assets/images/3-Relatorios.png)
+![Protótipo 4](assets/images/4-Quiz.png)
+![Protótipo 5](assets/images/5-Flashcards.png)
+![Protótipo 6](assets/images/6-ModoFoco.png)
+
+
 ## 👥 Equipe do Projeto
 
 Projeto desenvolvido como parte do Projeto Integrador Senac (Grupo 39):
