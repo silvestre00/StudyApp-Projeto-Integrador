@@ -112,7 +112,7 @@ http://localhost:8501
 Abaixo estão algumas telas iniciais do protótipo do sistema.  
 *(As imagens estão armazenadas na pasta `assets/images/` do repositório.)*
 
-![Protótipo 1]([assets/images/1-Login.png](https://github.com/silvestre00/StudyApp-Projeto-Integrador/blob/0cec88d2eefc38cdf128a043899890947afb713c/assents/images/1-Login.png))
+![Protótipo 1](assents/images/1-Login.png)
 ![Protótipo 2](assets/images/2-Planner.png)
 ![Protótipo 3](assets/images/3-Relatorios.png)
 ![Protótipo 4](assets/images/4-Quiz.png)
