@@ -1,8 +1,13 @@
 import streamlit as st
+st.set_page_config(
+        page_title="📚 StudyApp - Projeto Integrador",
+        page_icon="📚",
+        layout="wide",
+    )
 
 def main():
     planner_page = st.Page(
-        "pages/planner.py", url_path="/planner", title="PLanner de Estudos", icon="📘"
+        "pages/planner.py", url_path="/planner", title="Planner de Estudos", icon="📘"
     )
     quiz_page = st.Page(
         "pages/quiz.py", url_path="/quiz", title="Quiz / Simulados", icon="📝"
@@ -34,11 +39,7 @@ def main():
         ]
     )
     
-    st.set_page_config(
-        page_title="📚 StudyApp - Projeto Integrador",
-        page_icon="📚",
-        layout="wide",
-    )
+
 
     pg.run()
 
